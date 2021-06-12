@@ -1,0 +1,16 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install the Solana Tool Suite
+        run: sh -c "$(curl -sSfL https://release.solana.com/v1.7.1/install)"
+
+      - name: Check balance
+        run: solana balance ${{ secrets.ACCOUNT_ADDRESS }} --url https://api.testnet.solana.com
