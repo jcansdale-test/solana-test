@@ -14,5 +14,8 @@ jobs:
           sh -c "$(curl -sSfL https://release.solana.com/v1.7.1/install)"
           echo "$HOME/.local/share/solana/install/active_release/bin" >> $GITHUB_PATH
 
+      - name: Airdrop some tokens
+        run: solana airdrop 1 ${{ secrets.ACCOUNT_ADDRESS }} --url https://api.testnet.solana.com
+
       - name: Check balance
         run: solana balance ${{ secrets.ACCOUNT_ADDRESS }} --url https://api.testnet.solana.com
